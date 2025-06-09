@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL;
+// Update API_URL to use the deployed backend URL if available
+const API_URL = import.meta.env.VITE_API_URL || 'https://kencobackend.vercel.app';
 
 const api = axios.create({
   baseURL: API_URL,
