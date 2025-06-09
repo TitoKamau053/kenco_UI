@@ -158,8 +158,5 @@ All API calls are centralized in the `services` directory with separate modules 
 ## License
 This project is licensed under the MIT License.
 
-## Acknowledgments
-- React team
-- Ant Design team
-- Vite team
-- All contributors
+!!NOTE:
+THE PAYMENT IN THIS APPLICATION IS USING MPESA SANBOX SO NO REAL TRANSACTION ARE MADE
