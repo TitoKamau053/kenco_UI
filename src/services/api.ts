@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_URL = import.meta.env.VITE_API_URL;
 
 const api = axios.create({
   baseURL: API_URL,
@@ -177,11 +177,27 @@ export const paymentApi = {
   // Get payment history (for tenants)
   getPaymentHistory: async (filters?: any) => {
     try {
-      const response = await api.get('/api/payments', { params: filters });
-      return response;
+      const params = new URLSearchParams();
+      if (filters?.limit) params.append('limit', filters.limit);
+      if (filters?.sort) params.append('sort', filters.sort);
+      if (filters?.status) params.append('status', filters.status);
+      
+      const response = await api.get(`/api/payments?${params.toString()}`);
+      
+      // Transform response to ensure consistent data structure
+      return {
+        data: response.data.map((payment: any) => ({
+          id: payment.id,
+          payment_date: payment.payment_date,
+          amount: Number(payment.amount),
+          payment_status: payment.payment_status,
+          payment_method: payment.payment_method || 'M-Pesa',
+          reference_number: payment.reference_number || '-'
+        }))
+      };
     } catch (error) {
-      console.error('Error fetching payment history:', error);
-      return { data: [] }; // Return empty array on error
+      console.error('Failed to fetch payment history:', error);
+      throw error;
     }
   },
 

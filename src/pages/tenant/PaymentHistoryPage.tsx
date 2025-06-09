@@ -4,12 +4,12 @@ import { paymentApi } from '../../services/api';
 
 interface Payment {
   id: string;
-  date: string;
-property: string;
+  payment_date: string;
   amount: number;
-  status: string;
-  reference: string;
+  payment_status: string;
+  reference_number: string;
 }
+
 import LoadingSpinner from '../../components/shared/LoadingSpinner';
 import ErrorDisplay from '../../components/shared/ErrorDisplay';
 
@@ -56,9 +56,6 @@ const PaymentHistoryPage: React.FC = () => {
                   Date
                 </th>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Property
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Amount
                 </th>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -76,10 +73,7 @@ const PaymentHistoryPage: React.FC = () => {
               {payments.map((payment) => (
                 <tr key={payment.id}>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {new Date(payment.date).toLocaleDateString()}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {payment.property}
+                    {new Date(payment.payment_date).toLocaleDateString()}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     <div className="flex items-center">
@@ -88,12 +82,20 @@ const PaymentHistoryPage: React.FC = () => {
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                      {payment.status}
+                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                      payment.payment_status === 'completed' 
+                        ? 'bg-green-100 text-green-800'
+                        : payment.payment_status === 'pending'
+                        ? 'bg-yellow-100 text-yellow-800'
+                        : payment.payment_status === 'failed'
+                        ? 'bg-red-100 text-red-800'
+                        : 'bg-gray-100 text-gray-800'
+                    }`}>
+                      {payment.payment_status}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {payment.reference}
+                    {payment.reference_number}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <button className="text-blue-900 hover:text-blue-800">
