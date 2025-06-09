@@ -159,4 +159,4 @@ All API calls are centralized in the `services` directory with separate modules 
 This project is licensed under the MIT License.
 
 !!NOTE:
-THE PAYMENT IN THIS APPLICATION IS USING MPESA SANBOX SO NO REAL TRANSACTION ARE MADE
+THE PAYMENT IN THIS APPLICATION IS USING MPESA DARAJA API SANDBOX SO NO REAL TRANSACTION ARE MADE
