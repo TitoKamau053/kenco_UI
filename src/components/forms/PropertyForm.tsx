@@ -82,7 +82,7 @@ const PropertyForm: React.FC<{ onSubmit: (data: FormData) => Promise<void> }> = 
                   type="button"
                   title="Remove image"
                   onClick={() => removeImage(index)}
-                  className="absolute top-0 right-0 p-1 bg-red-500 text-white rounded-full -mt-2 -mr-2"
+                  className="absolute top-0 right-0 p-1 bg-red-500 dark:bg-red-600 text-white rounded-full -mt-2 -mr-2"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -108,7 +108,7 @@ const PropertyForm: React.FC<{ onSubmit: (data: FormData) => Promise<void> }> = 
       <button
         type="submit"
         disabled={uploading}
-        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-900 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-blue-300"
+        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-900 hover:bg-blue-800 dark:bg-purple-700 dark:hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-purple-500 disabled:bg-blue-300 dark:disabled:bg-purple-400"
       >
         {uploading ? 'Uploading...' : 'Add Property'}
       </button>

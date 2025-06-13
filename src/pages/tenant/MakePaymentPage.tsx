@@ -172,7 +172,7 @@ const MakePaymentPage: React.FC = () => {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'completed':
-        return <CheckCircle className="h-12 w-12 text-green-500" />;
+        return <CheckCircle className="h-12 w-12 text-green-500 dark:text-green-400" />;
       case 'failed':
         return <XCircle className="h-12 w-12 text-red-500" />;
       case 'pending':
@@ -211,13 +211,13 @@ const MakePaymentPage: React.FC = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'completed':
-        return 'bg-green-50 border-green-200';
+        return 'bg-green-50 border-green-200 dark:bg-green-950 dark:border-green-900';
       case 'failed':
-        return 'bg-red-50 border-red-200';
+        return 'bg-red-50 border-red-200 dark:bg-red-950 dark:border-red-900';
       case 'pending':
-        return 'bg-yellow-50 border-yellow-200';
+        return 'bg-yellow-50 border-yellow-200 dark:bg-yellow-950 dark:border-yellow-900';
       default:
-        return 'bg-gray-50 border-gray-200';
+        return 'bg-gray-50 border-gray-200 dark:bg-gray-900 dark:border-gray-800';
     }
   };
 
@@ -228,7 +228,7 @@ const MakePaymentPage: React.FC = () => {
       case 'failed':
         return 'bg-red-600 hover:bg-red-700';
       default:
-        return 'bg-gray-600 hover:bg-gray-700';
+        return 'bg-gray-600 hover:bg-gray-700 dark:bg-purple-700 dark:hover:bg-purple-800';
     }
   };
 

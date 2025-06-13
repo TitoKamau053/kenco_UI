@@ -1,0 +1,173 @@
+/* Dark mode text color adjustments */
+
+.dark .text-gray-900 {
+  color: white !important;
+}
+
+.dark .text-gray-800 {
+  color: #f8fafc !important;
+}
+
+.dark .text-gray-700 {
+  color: #f1f5f9 !important;
+}
+
+.dark .text-gray-600 {
+  color: #e2e8f0 !important;
+}
+
+.dark .text-gray-500 {
+  color: #cbd5e1 !important;
+}
+
+/* Fix for the circular dependency - use direct color value instead of @apply */
+.dark .text-gray-400 {
+  color: #94a3b8 !important;
+}
+
+/* Ensure input text is visible */
+.dark input,
+.dark textarea,
+.dark select {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Fix table text colors */
+.dark th,
+.dark td {
+  color: white;
+}
+
+/* Make sure buttons with gray backgrounds are visible in dark mode */
+.dark .bg-gray-100,
+.dark .bg-gray-200 {
+  background-color: #4a2986; /* Changed to purple */
+}
+
+/* Ensure headings are visible */
+.dark h1,
+.dark h2, 
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  color: white;
+}
+
+/* Tables in dark mode */
+.dark table {
+  background-color: var(--card);
+  border-color: var(--border);
+}
+
+.dark table th {
+  background-color: #5a3494; /* Changed to purple */
+  color: white;
+  border-color: var(--border);
+}
+
+.dark table td {
+  border-color: var(--border);
+  color: white;
+}
+
+.dark table tr:hover {
+  background-color: #6b3daf; /* Changed to lighter purple */
+}
+
+/* Forms and inputs in dark mode */
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: #4a2986; /* Changed to purple */
+  border-color: var(--border);
+  color: white;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #94a3b8;
+}
+
+/* Ant Design component overrides for dark mode */
+.dark .ant-modal-content,
+.dark .ant-modal-header {
+  background-color: var(--card);
+  border-color: var(--border);
+  color: white !important;
+}
+
+.dark .ant-modal-title,
+.dark .ant-modal-close {
+  color: white !important;
+}
+
+.dark .ant-select-selector {
+  background-color: #4a2986; /* Changed to purple */
+  border-color: var(--border);
+  color: white !important;
+}
+
+.dark .ant-select-dropdown {
+  background-color: #4a2986; /* Changed to purple */
+  border-color: var(--border);
+  color: white !important;
+}
+
+.dark .ant-select-item {
+  color: white !important;
+}
+
+.dark .ant-select-item-option-selected,
+.dark .ant-select-item-option-active {
+  background-color: #6b3daf !important; /* Changed to lighter purple */
+}
+
+.dark .ant-table {
+  background-color: var(--card);
+  color: white !important;
+}
+
+.dark .ant-table-thead > tr > th {
+  background-color: #5a3494; /* Changed to purple */
+  color: white;
+  border-color: var(--border) !important;
+}
+
+.dark .ant-table-tbody > tr > td {
+  border-color: var(--border);
+  color: white !important;
+}
+
+.dark .ant-table-tbody > tr:hover > td {
+  background-color: #6b3daf !important; /* Changed to lighter purple */
+}
+
+.dark .ant-pagination-item a {
+  color: white !important;
+}
+
+.dark .ant-pagination-item-active {
+  background-color: #6b3daf; /* Changed to lighter purple */
+  border-color: var(--border) !important;
+}
+
+.dark .ant-btn {
+  color: white;
+  background-color: #4a2986; /* Changed to purple */
+  border-color: var(--border);
+}
+
+.dark .ant-btn:hover {
+  background-color: #6b3daf !important; /* Changed to lighter purple */
+}
+
+.dark .ant-btn-primary {
+  background-color: var(--color-primary-600);
+  border-color: var(--color-primary-600) !important;
+}
+
+.dark .ant-btn-primary:hover {
+  background-color: var(--color-primary-700) !important;
+}

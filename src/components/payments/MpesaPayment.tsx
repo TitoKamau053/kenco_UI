@@ -72,7 +72,7 @@ const MpesaPayment: React.FC<{
         <button
           type="submit"
           disabled={processing}
-          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:bg-green-300"
+          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 dark:focus:ring-green-600 disabled:bg-green-300 dark:disabled:bg-green-900/50"
         >
           {processing ? 'Processing...' : 'Pay Now'}
         </button>

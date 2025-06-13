@@ -25,12 +25,12 @@ const HomePage: React.FC = () => {
             Manage rentals, process M-Pesa payments, and communicate efficiently.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
-            <Link
+            {/* <Link
               to="/properties"
               className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-blue-900 bg-white hover:bg-gray-50"
             >
               Browse Properties
-            </Link>
+            </Link> */}
             <Link
               to="/register"
               className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-amber-500 hover:bg-amber-600"
@@ -42,14 +42,14 @@ const HomePage: React.FC = () => {
       </div>
 
       {/* Features Section */}
-      <div className="py-16 bg-white">
+      <div className="py-16 bg-[var(--background)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-base font-semibold text-blue-900 tracking-wide uppercase">Features</h2>
-            <p className="mt-2 text-3xl font-extrabold text-gray-900 sm:text-4xl">
+            <p className="mt-2 text-3xl font-extrabold text-[var(--foreground)] sm:text-4xl">
               Everything you need to manage rentals
             </p>
-            <p className="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+            <p className="mt-4 max-w-2xl text-xl text-[var(--muted-foreground)] mx-auto">
               Our platform streamlines the rental process for both landlords and tenants.
             </p>
           </div>
@@ -57,15 +57,15 @@ const HomePage: React.FC = () => {
           <div className="mt-16">
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
               <div className="pt-6">
-                <div className="flow-root bg-gray-50 rounded-lg px-6 pb-8">
+                <div className="flow-root bg-[var(--card)] rounded-lg px-6 pb-8">
                   <div className="-mt-6">
                     <div>
                       <span className="inline-flex items-center justify-center p-3 bg-blue-900 rounded-md shadow-lg">
                         <Home className="h-6 w-6 text-white" />
                       </span>
                     </div>
-                    <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">Property Management</h3>
-                    <p className="mt-5 text-base text-gray-500">
+                    <h3 className="mt-8 text-lg font-medium text-[var(--foreground)] tracking-tight">Property Management</h3>
+                    <p className="mt-5 text-base text-[var(--muted-foreground)]">
                       Easily manage your properties, track occupancy, and handle M-Pesa rent payments seamlessly.
                     </p>
                   </div>
@@ -73,15 +73,15 @@ const HomePage: React.FC = () => {
               </div>
 
               <div className="pt-6">
-                <div className="flow-root bg-gray-50 rounded-lg px-6 pb-8">
+                <div className="flow-root bg-[var(--card)] rounded-lg px-6 pb-8">
                   <div className="-mt-6">
                     <div>
                       <span className="inline-flex items-center justify-center p-3 bg-blue-900 rounded-md shadow-lg">
                         <CreditCard className="h-6 w-6 text-white" />
                       </span>
                     </div>
-                    <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">Rent Collection</h3>
-                    <p className="mt-5 text-base text-gray-500">
+                    <h3 className="mt-8 text-lg font-medium text-[var(--foreground)] tracking-tight">Rent Collection</h3>
+                    <p className="mt-5 text-base text-[var(--muted-foreground)]">
                       Streamline rent collection with automated reminders, M-Pesa integration, and instant receipt generation.
                     </p>
                   </div>
@@ -89,15 +89,15 @@ const HomePage: React.FC = () => {
               </div>
 
               <div className="pt-6">
-                <div className="flow-root bg-gray-50 rounded-lg px-6 pb-8">
+                <div className="flow-root bg-[var(--card)] rounded-lg px-6 pb-8">
                   <div className="-mt-6">
                     <div>
                       <span className="inline-flex items-center justify-center p-3 bg-blue-900 rounded-md shadow-lg">
                         <ShieldCheck className="h-6 w-6 text-white" />
                       </span>
                     </div>
-                    <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">Maintenance Tracking</h3>
-                    <p className="mt-5 text-base text-gray-500">
+                    <h3 className="mt-8 text-lg font-medium text-[var(--foreground)] tracking-tight">Maintenance Tracking</h3>
+                    <p className="mt-5 text-base text-[var(--muted-foreground)]">
                       Submit and track maintenance requests with ease, ensuring quick resolution of issues.
                     </p>
                   </div>
@@ -105,15 +105,15 @@ const HomePage: React.FC = () => {
               </div>
 
               <div className="pt-6">
-                <div className="flow-root bg-gray-50 rounded-lg px-6 pb-8">
+                <div className="flow-root bg-[var(--card)] rounded-lg px-6 pb-8">
                   <div className="-mt-6">
                     <div>
                       <span className="inline-flex items-center justify-center p-3 bg-blue-900 rounded-md shadow-lg">
                         <Users className="h-6 w-6 text-white" />
                       </span>
                     </div>
-                    <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">Tenant Management</h3>
-                    <p className="mt-5 text-base text-gray-500">
+                    <h3 className="mt-8 text-lg font-medium text-[var(--foreground)] tracking-tight">Tenant Management</h3>
+                    <p className="mt-5 text-base text-[var(--muted-foreground)]">
                       Keep track of tenant information, leases, and communications in one centralized location.
                     </p>
                   </div>
@@ -121,15 +121,15 @@ const HomePage: React.FC = () => {
               </div>
 
               <div className="pt-6">
-                <div className="flow-root bg-gray-50 rounded-lg px-6 pb-8">
+                <div className="flow-root bg-[var(--card)] rounded-lg px-6 pb-8">
                   <div className="-mt-6">
                     <div>
                       <span className="inline-flex items-center justify-center p-3 bg-blue-900 rounded-md shadow-lg">
                         <Building2 className="h-6 w-6 text-white" />
                       </span>
                     </div>
-                    <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">Property Listings</h3>
-                    <p className="mt-5 text-base text-gray-500">
+                    <h3 className="mt-8 text-lg font-medium text-[var(--foreground)] tracking-tight">Property Listings</h3>
+                    <p className="mt-5 text-base text-[var(--muted-foreground)]">
                       Showcase your available properties with detailed listings and attract potential tenants.
                     </p>
                   </div>

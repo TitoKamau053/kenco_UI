@@ -12,14 +12,16 @@ interface AuthContextType {
   user: User | null;
   loading: boolean;
   error: string | null;
-  login: (email: string, password: string) => Promise<void>;
+  login: (email: string, password: string) => Promise<User>;
   register: (name: string, email: string, password: string, role: string) => Promise<void>;
   logout: () => void;
   isAuthenticated: boolean;
 }
 
+// Create the context with a default undefined value
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// Export the provider component
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -53,7 +55,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     
     try {
       const response = await authApi.login(email, password);
-      setUser(response.data.user);
+      const loggedInUser = response.data.user;
+      setUser(loggedInUser);
+      return loggedInUser; // Return the user for redirection
     } catch (err: any) {
       setError(err.message || 'Failed to login');
       throw err;
@@ -61,6 +65,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setLoading(false);
     }
   };
+
 
   const register = async (name: string, email: string, password: string, role: string) => {
     setLoading(true);
@@ -99,10 +104,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   );
 };
 
-export const useAuth = () => {
+// Export the hook as a named function declaration instead of an arrow function
+export function useAuth() {
   const context = useContext(AuthContext);
   if (context === undefined) {
     throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
-};
+}

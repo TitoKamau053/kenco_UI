@@ -21,6 +21,7 @@ import ManageTenantsPage from './pages/landlord/ManageTenantsPage';
 import ManagePropertiesPage from './pages/landlord/ManagePropertiesPage';
 import ViewPaymentsPage from './pages/landlord/LandlordPaymentsPage';
 import ComplaintsPage from './pages/landlord/LandlordsComplaintsPage';
+import ReportsPage from './pages/landlord/ReportsPage'; // Add import for Reports page
 
 // Tenant pages
 import TenantDashboard from './pages/tenant/TenantDashboard';
@@ -30,58 +31,68 @@ import SubmitComplaintPage from './pages/tenant/SubmitComplaintPage';
 
 // Auth and context
 import { AuthProvider } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <Routes>
-          {/* Public routes */}
-          <Route element={<PublicLayout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/properties" element={<PropertiesPage />} />
-            <Route path="/properties/:id" element={<PropertyDetailsPage />} />
-          </Route>
+    // Make sure Router is the outermost component - only one in the app
+    <Router>
+      <AuthProvider>
+        <ThemeProvider>
+          <Routes>
+            {/* Public routes */}
+            <Route element={<PublicLayout />}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/properties" element={<PropertiesPage />} />
+              <Route path="/properties/:id" element={<PropertyDetailsPage />} />
+            </Route>
 
-          {/* Landlord routes */}
-          <Route 
-            element={
-              <ProtectedRoute role="landlord">
-                <LandlordLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route path="/landlord/dashboard" element={<LandlordDashboard />} />
-            <Route path="/landlord/tenants" element={<ManageTenantsPage />} />
-            <Route path="/landlord/properties" element={<ManagePropertiesPage />} />
-            <Route path="/landlord/payments" element={<ViewPaymentsPage />} />
-            <Route path="/landlord/complaints" element={<ComplaintsPage />} />
-          </Route>
+            {/* Landlord routes */}
+            <Route 
+              element={
+                <ProtectedRoute role="landlord">
+                  <LandlordLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route path="/landlord/dashboard" element={<LandlordDashboard />} />
+              <Route path="/landlord/tenants" element={<ManageTenantsPage />} />
+              <Route path="/landlord/properties" element={<ManagePropertiesPage />} />
+              <Route path="/landlord/payments" element={<ViewPaymentsPage />} />
+              <Route path="/landlord/complaints" element={<ComplaintsPage />} />
+              <Route path="/landlord/reports" element={<ReportsPage />} /> {/* Add Reports route */}
+            </Route>
 
-          {/* Tenant routes */}
-          <Route 
-            element={
-              <ProtectedRoute role="tenant">
-                <TenantLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route path="/tenant/dashboard" element={<TenantDashboard />} />
-            <Route path="/tenant/pay" element={<MakePaymentPage />} />
-            <Route path="/tenant/payments" element={<PaymentHistoryPage />} />
-            <Route path="/tenant/complaints" element={<SubmitComplaintPage />} />
-          </Route>
+            {/* Tenant routes */}
+            <Route 
+              element={
+                <ProtectedRoute role="tenant">
+                  <TenantLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route path="/tenant/dashboard" element={<TenantDashboard />} />
+              <Route path="/tenant/pay" element={<MakePaymentPage />} />
+              <Route path="/tenant/payments" element={<PaymentHistoryPage />} />
+              <Route path="/tenant/complaints" element={<SubmitComplaintPage />} />
+            </Route>
 
-          {/* Fallback route */}
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-        
-        <ToastContainer position="top-right" autoClose={3000} />
-      </Router>
-    </AuthProvider>
+            {/* Fallback route */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+          
+          <ToastContainer 
+            position="top-right" 
+            autoClose={3000}
+            theme="colored"
+            className="mt-16" // Add margin top to avoid overlap with navbar
+          />
+        </ThemeProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 

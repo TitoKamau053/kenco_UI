@@ -12,31 +12,29 @@ interface LoginFormData {
 }
 
 const LoginPage: React.FC = () => {
-  const { login, user } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<LoginFormData>();
 
   const onSubmit = async (data: LoginFormData) => {
     try {
-      await login(data.email, data.password);
+      // Call login and get the returned user object
+      const user = await login(data.email, data.password);
       toast.success('Login successful!');
-      
-      // Get the user role from the auth context
-      const role = user?.role;
-      
-      // Redirect based on user role
-      if (role === 'tenant') {
+
+      // Redirect based on returned user role
+      if (user?.role === 'tenant') {
         navigate('/tenant/dashboard');
-      } else if (role === 'landlord') {
+      } else if (user?.role === 'landlord') {
         navigate('/landlord/dashboard');
       } else {
         navigate('/');
       }
-      
     } catch (error: any) {
       toast.error(error.response?.data?.message || 'Failed to login');
     }
   };
+
 
   return (
     <div className="min-h-[calc(100vh-8rem)] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -45,12 +43,12 @@ const LoginPage: React.FC = () => {
           <div className="flex justify-center">
             <Building2 className="h-12 w-12 text-blue-900" />
           </div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
             Sign in to {APP_NAME}
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
+          <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-300">
             Or{' '}
-            <Link to="/register" className="font-medium text-blue-900 hover:text-blue-800">
+            <Link to="/register" className="font-medium text-blue-900 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
               create a new account
             </Link>
           </p>

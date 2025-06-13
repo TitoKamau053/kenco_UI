@@ -40,8 +40,8 @@ const PaymentHistoryPage: React.FC = () => {
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Payment History</h1>
-        <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-900 hover:bg-blue-800">
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Payment History</h1>
+        <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-900 hover:bg-blue-800 dark:bg-purple-700 dark:hover:bg-purple-600">
           <Download className="h-4 w-4 mr-2" />
           Export History
         </button>

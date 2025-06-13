@@ -216,7 +216,7 @@ const LandlordPaymentsPage: React.FC = () => {
             <p className="mt-1 text-sm text-red-700">{error}</p>
             <button 
               onClick={() => window.location.reload()}
-              className="mt-2 text-sm text-red-800 underline hover:text-red-900"
+              className="mt-2 text-sm text-red-800 dark:text-red-300 underline hover:text-red-900 dark:hover:text-red-200"
             >
               Try again
             </button>

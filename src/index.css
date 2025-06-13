@@ -1,3 +1,161 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme colors */
+    --color-primary-50: #eef2ff;
+    --color-primary-100: #e0e7ff;
+    --color-primary-200: #c7d2fe;
+    --color-primary-300: #a5b4fc;
+    --color-primary-400: #818cf8;
+    --color-primary-500: #6366f1;
+    --color-primary-600: #4f46e5;
+    --color-primary-700: #1e40af;
+    --color-primary-800: #1e3a8a;
+    --color-primary-900: #1e3a8a;
+    --color-primary-950: #172554;
+    
+    --color-secondary-50: #f8fafc;
+    --color-secondary-100: #f1f5f9;
+    --color-secondary-200: #e2e8f0;
+    --color-secondary-300: #cbd5e1;
+    --color-secondary-400: #94a3b8;
+    --color-secondary-500: #64748b;
+    --color-secondary-600: #475569;
+    --color-secondary-700: #334155;
+    --color-secondary-800: #1e293b;
+    --color-secondary-900: #0f172a;
+    --color-secondary-950: #020617;
+    
+    /* Base colors */
+    --background: #ffffff;
+    --foreground: #0f172a;
+    --card: #ffffff;
+    --card-foreground: #0f172a;
+    --popover: #ffffff;
+    --popover-foreground: #0f172a;
+    --muted: #f1f5f9;
+    --muted-foreground: #64748b;
+    --accent: #f1f5f9;
+    --accent-foreground: #0f172a;
+    --border: #e2e8f0;
+    --input: #e2e8f0;
+    --ring: #1e40af;
+
+    /* Status colors */
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --info: #0ea5e9;
+  }
+
+  .dark {
+    /* Dark theme colors - enhanced purple tones */
+    --color-primary-50: #172554;
+    --color-primary-100: #1e3a8a;
+    --color-primary-200: #1e3a8a;
+    --color-primary-300: #1e40af;
+    --color-primary-400: #4f46e5;
+    --color-primary-500: #6366f1;
+    --color-primary-600: #818cf8;
+    --color-primary-700: #a5b4fc;
+    --color-primary-800: #c7d2fe;
+    --color-primary-900: #e0e7ff;
+    --color-primary-950: #eef2ff;
+    
+    /* Base colors - improved purple shades */
+    --background: #1a102b;
+    --foreground: #ffffff; /* Changed to white for all text */
+    --card: #2d1b47;
+    --card-foreground: #ffffff; /* Changed to white */
+    --popover: #2d1b47;
+    --popover-foreground: #ffffff; /* Changed to white */
+    --muted: #3d2a5a;
+    --muted-foreground: #e2e8f0; /* Lightened for better visibility */
+    --accent: #4a3365;
+    --accent-foreground: #ffffff; /* Changed to white */
+    --border: #37275a;
+    --input: #37275a;
+    --ring: #6366f1;
+
+    /* Status colors - slightly adjusted for dark mode */
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --info: #0ea5e9;
+    
+    /* Ensure text is visible in dark mode */
+    color-scheme: dark;
+  }
+}
+
+/* Apply base styles */
+@layer base {
+  body {
+    @apply bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300;
+  }
+  
+  /* Add smooth transitions for theme changes */
+  *, *::before, *::after {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+
+  /* Add default text color behavior for dark mode */
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6, .dark p, .dark span, .dark label, .dark a {
+    @apply text-white;
+  }
+  
+  /* Button styling in dark mode */
+  .dark button:not(.ant-btn):not([class*="bg-"]) {
+    @apply bg-[var(--card)] border-[var(--border)] text-white hover:bg-[var(--accent)];
+  }
+  
+  /* Card styling in dark mode */
+  .dark div[class*="card"], 
+  .dark div[class*="bg-white"], 
+  .dark div[class*="shadow"] {
+    @apply bg-[var(--card)] text-white border-[var(--border)];
+  }
+  
+  /* Dark mode table styles */
+  .dark table {
+    @apply border-[var(--border)] text-white;
+  }
+  
+  .dark td, .dark th {
+    @apply border-[var(--border)] text-white;
+  }
+  
+  .dark th {
+    @apply bg-[var(--muted)];
+  }
+}
+
+/* Component styles */
+@layer components {
+  /* Button style variants */
+  .btn-primary {
+    @apply px-4 py-2 bg-blue-900 dark:bg-purple-700 text-white rounded-md hover:bg-blue-800 dark:hover:bg-purple-600 transition-colors;
+  }
+  
+  .btn-secondary {
+    @apply px-4 py-2 bg-gray-200 dark:bg-[var(--muted)] text-gray-800 dark:text-white rounded-md hover:bg-gray-300 dark:hover:bg-[var(--accent)] transition-colors;
+  }
+  
+  .btn-danger {
+    @apply px-4 py-2 bg-red-600 dark:bg-red-700 text-white rounded-md hover:bg-red-700 dark:hover:bg-red-800 transition-colors;
+  }
+  
+  .btn-success {
+    @apply px-4 py-2 bg-green-600 dark:bg-green-700 text-white rounded-md hover:bg-green-700 dark:hover:bg-green-800 transition-colors;
+  }
+  
+  /* Card style */
+  .card {
+    @apply bg-white dark:bg-[var(--card)] rounded-lg shadow-md border border-gray-200 dark:border-[var(--border)] p-4;
+  }
+}

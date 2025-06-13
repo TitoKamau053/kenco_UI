@@ -44,8 +44,8 @@ const SubmitComplaintPage: React.FC = () => {
   return (
     <div className="max-w-3xl mx-auto">
       <div className="flex items-center mb-6">
-        <AlertTriangle className="h-6 w-6 text-amber-500 mr-2" />
-        <h1 className="text-2xl font-bold text-gray-900">Submit a Complaint</h1>
+        <AlertTriangle className="h-6 w-6 text-amber-500 dark:text-amber-400 mr-2" />
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Submit a Complaint</h1>
       </div>
 
       <div className="bg-white shadow-md rounded-lg p-6">

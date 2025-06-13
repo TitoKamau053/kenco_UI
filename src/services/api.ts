@@ -62,7 +62,7 @@ export const authApi = {
     }
   },
   
-  register: async (name: string, email: string, password: string) => {
+  register: async (name: string, email: string, password: string, role?: string) => {
     const response = await api.post('/api/auth/register', { name, email, password });
     return response;
   },
@@ -97,13 +97,6 @@ export const propertyApi = {
   // Get landlord's properties with enhanced data
   getLandlordProperties: async (filters?: any) => {
     const response = await api.get('/api/landlord/properties', { params: filters });
-    // Transform image URLs to include full API URL
-    response.data = response.data.map((property: any) => ({
-      ...property,
-      image: property.image?.startsWith('http') 
-        ? property.image 
-        : `${API_URL}${property.image}`
-    }));
     return response;
   },
   
@@ -138,6 +131,11 @@ export const propertyApi = {
 
   deleteProperty: async (id: string) => {
     const response = await api.delete(`/api/properties/${id}`);
+    return response;
+  },
+
+  getPropertiesReport: async (filters?: any) => {
+    const response = await api.get('/api/reports/properties', { params: filters });
     return response;
   }
 };
@@ -228,45 +226,14 @@ export const paymentApi = {
   },
 
   // Landlord specific methods
-  getLandlordPayments: async (filters?: {
-    page?: number;
-    limit?: number;
-    search?: string;
-    startDate?: string;
-    endDate?: string;
-  }) => {
-    try {
-      // Clean up filters to ensure no undefined values
-      const cleanFilters: any = {};
-      
-      if (filters?.page && filters.page > 0) {
-        cleanFilters.page = filters.page;
-      }
-      
-      if (filters?.limit && filters.limit > 0) {
-        cleanFilters.limit = filters.limit;
-      }
-      
-      if (filters?.search && filters.search.trim()) {
-        cleanFilters.search = filters.search.trim();
-      }
-      
-      if (filters?.startDate && filters.startDate.trim()) {
-        cleanFilters.startDate = filters.startDate.trim();
-      }
-      
-      if (filters?.endDate && filters.endDate.trim()) {
-        cleanFilters.endDate = filters.endDate.trim();
-      }
-      
-      console.log('API: Sending landlord payments request with filters:', cleanFilters);
-      
-      const response = await api.get('/api/landlord/payments', { params: cleanFilters });
-      return response;
-    } catch (error) {
-      console.error('Error fetching landlord payments:', error);
-      throw error;
-    }
+  getLandlordPayments: async (filters?: any) => {
+    const response = await api.get('/api/landlord/payments', { params: filters });
+    return response;
+  },
+
+  getPaymentsReport: async (filters?: any) => {
+    const response = await api.get('/api/reports/payments', { params: filters });
+    return response;
   }
 };
 
@@ -306,6 +273,11 @@ export const complaintApi = {
       console.error('Error fetching landlord complaints:', error);
       return { data: [] }; // Return empty array on error
     }
+  },
+
+  getComplaintsReport: async (filters?: any) => {
+    const response = await api.get('/api/reports/complaints', { params: filters });
+    return response;
   },
 
   updateComplaint: async (id: number, status: string) => {

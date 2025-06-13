@@ -87,7 +87,7 @@ const ManagePropertiesPage: React.FC = () => {
             setSelectedProperty(null);
             setModalVisible(true);
           }}
-          className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-900 hover:bg-blue-800"
+          className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-900 hover:bg-blue-800 dark:bg-purple-700 dark:hover:bg-purple-600"
         >
           <Plus className="h-5 w-5 mr-2" />
           Add Property

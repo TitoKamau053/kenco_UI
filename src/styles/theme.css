@@ -1,0 +1,31 @@
+:root {
+  /* Light mode variables */
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --primary: #2563eb;
+  --primary-foreground: #f8fafc;
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+}
+
+.dark {
+  /* Dark mode variables with purple tones */
+  --background: #1a103b; /* Deep purple */
+  --foreground: #f8fafc;
+  --card: #261a36; /* Slightly lighter purple */
+  --card-foreground: #f8fafc;
+  --border: #3d2a5a; /* Medium purple */
+  --input: #3d2a5a;
+  --primary: #8b5cf6; /* Bright purple */
+  --primary-foreground: #f8fafc;
+  --accent: #4a3365; /* Lighter purple */
+  --accent-foreground: #f8fafc;
+  --muted: #3d2a5a; /* Medium purple */
+  --muted-foreground: #cbd5e1;
+}

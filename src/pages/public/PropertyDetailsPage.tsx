@@ -72,8 +72,8 @@ const PropertyDetailsPage: React.FC = () => {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-900">Property not found</h2>
-          <p className="mt-2 text-gray-600">{error || "The property you're looking for doesn't exist or has been removed."}</p>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Property not found</h2>
+          <p className="mt-2 text-gray-600 dark:text-gray-300">{error || "The property you're looking for doesn't exist or has been removed."}</p>
         </div>
       </div>
     );
@@ -163,7 +163,7 @@ const PropertyDetailsPage: React.FC = () => {
               <p className="text-3xl font-bold text-blue-900">KES {property.price}</p>
               <p className="text-gray-600">per month</p>
             </div>
-            <button className="mt-4 w-full bg-blue-900 text-white py-2 px-4 rounded-md hover:bg-blue-800 transition-colors">
+            <button className="mt-4 w-full bg-blue-900 text-white py-2 px-4 rounded-md hover:bg-blue-800 dark:bg-purple-700 dark:hover:bg-purple-600 transition-colors">
               Request Viewing
             </button>
           </div>

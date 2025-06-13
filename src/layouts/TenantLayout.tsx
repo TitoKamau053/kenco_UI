@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { APP_NAME } from '../config/constants';
+import ThemeToggle from '../components/shared/ThemeToggle';
 
 const TenantLayout: React.FC = () => {
   const { user, logout } = useAuth();
@@ -50,27 +51,30 @@ const TenantLayout: React.FC = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       {/* Top navigation */}
-      <nav className="bg-white shadow-sm">
+      <nav className="bg-[var(--card)] shadow-sm border-b border-[var(--border)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex">
               <div className="flex-shrink-0 flex items-center">
                 <Link to="/tenant/dashboard" className="flex items-center">
-                  <Building2 className="h-8 w-8 text-blue-900" />
-                  <span className="ml-2 text-xl font-bold text-blue-900">{APP_NAME}</span>
+                  <Building2 className="h-8 w-8 text-primary-700" />
+                  <span className="ml-2 text-xl font-bold text-primary-700">{APP_NAME}</span>
                 </Link>
               </div>
             </div>
 
             {/* Desktop navigation */}
             <div className="hidden sm:ml-6 sm:flex sm:items-center sm:space-x-4">
+              {/* Theme toggle */}
+              <ThemeToggle variant="icon" />
+              
               {/* Notifications */}
               <div className="relative">
                 <button
                   type="button"
-                  className="relative p-1 text-gray-400 hover:text-gray-500 focus:outline-none"
+                  className="relative p-1 text-[var(--muted-foreground)] hover:text-[var(--foreground)] focus:outline-none"
                   onClick={toggleNotifications}
                 >
                   <Bell className="h-6 w-6" />
@@ -81,28 +85,28 @@ const TenantLayout: React.FC = () => {
 
                 {/* Notifications dropdown */}
                 {notificationsOpen && (
-                  <div className="origin-top-right absolute right-0 mt-2 w-80 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
+                  <div className="origin-top-right absolute right-0 mt-2 w-80 rounded-md shadow-lg bg-[var(--card)] border border-[var(--border)] ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
                     <div className="py-1">
-                      <div className="px-4 py-2 border-b border-gray-200">
-                        <h3 className="text-sm font-medium text-gray-900">Notifications</h3>
+                      <div className="px-4 py-2 border-b border-[var(--border)]">
+                        <h3 className="text-sm font-medium text-[var(--foreground)]">Notifications</h3>
                       </div>
                       <div className="max-h-60 overflow-y-auto">
                         {notifications.length > 0 ? (
                           notifications.map((notification) => (
                             <div 
                               key={notification.id} 
-                              className={`px-4 py-2 hover:bg-gray-50 border-b border-gray-100 ${notification.read ? '' : 'bg-blue-50'}`}
+                              className={`px-4 py-2 hover:bg-[var(--accent)] border-b border-[var(--border)] ${notification.read ? '' : 'bg-blue-50 dark:bg-blue-900/20'}`}
                             >
-                              <p className="text-sm text-gray-700">{notification.message}</p>
-                              <p className="text-xs text-gray-500 mt-1">{notification.time}</p>
+                              <p className="text-sm text-[var(--foreground)]">{notification.message}</p>
+                              <p className="text-xs text-[var(--muted-foreground)] mt-1">{notification.time}</p>
                             </div>
                           ))
                         ) : (
-                          <p className="px-4 py-2 text-sm text-gray-500">No new notifications</p>
+                          <p className="px-4 py-2 text-sm text-[var(--muted-foreground)]">No new notifications</p>
                         )}
                       </div>
-                      <div className="px-4 py-2 border-t border-gray-200">
-                        <a href="#" className="text-xs text-blue-900 hover:text-blue-700">Mark all as read</a>
+                      <div className="px-4 py-2 border-t border-[var(--border)]">
+                        <a href="#" className="text-xs text-primary-700 hover:text-primary-800 dark:hover:text-primary-300">Mark all as read</a>
                       </div>
                     </div>
                   </div>
@@ -112,10 +116,10 @@ const TenantLayout: React.FC = () => {
               {/* Profile dropdown */}
               <div className="flex items-center space-x-2">
                 <div className="flex flex-col items-end">
-                  <span className="text-sm font-medium text-gray-700">{user?.name}</span>
-                  <span className="text-xs text-gray-500 capitalize">Tenant</span>
+                  <span className="text-sm font-medium text-[var(--foreground)]">{user?.name}</span>
+                  <span className="text-xs text-[var(--muted-foreground)] capitalize">Tenant</span>
                 </div>
-                <div className="h-8 w-8 rounded-full bg-blue-900 flex items-center justify-center text-white font-medium">
+                <div className="h-8 w-8 rounded-full bg-primary-700 flex items-center justify-center text-white font-medium">
                   {user?.name.charAt(0).toUpperCase()}
                 </div>
               </div>
@@ -132,9 +136,10 @@ const TenantLayout: React.FC = () => {
 
             {/* Mobile menu button */}
             <div className="flex items-center sm:hidden">
+              <ThemeToggle variant="icon" className="mr-2" />
               <button
                 onClick={toggleMobileMenu}
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+                className="inline-flex items-center justify-center p-2 rounded-md text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--accent)] focus:outline-none"
               >
                 {mobileMenuOpen ? (
                   <X className="block h-6 w-6" />
@@ -148,7 +153,7 @@ const TenantLayout: React.FC = () => {
 
         {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className="sm:hidden bg-white border-b border-gray-200">
+          <div className="sm:hidden bg-[var(--card)] border-b border-[var(--border)]">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navItems.map((item) => (
                 <Link
@@ -156,8 +161,8 @@ const TenantLayout: React.FC = () => {
                   to={item.path}
                   className={`${
                     isActive(item.path)
-                      ? 'bg-blue-50 border-blue-900 text-blue-900'
-                      : 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800'
+                      ? 'bg-primary-50 dark:bg-primary-900/20 border-primary-700 text-primary-700'
+                      : 'border-transparent text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--foreground)]'
                   } block pl-3 pr-4 py-2 border-l-4 text-base font-medium`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -169,25 +174,25 @@ const TenantLayout: React.FC = () => {
               ))}
               <button
                 onClick={handleLogout}
-                className="w-full text-left block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800"
+                className="w-full text-left block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-[var(--foreground)] hover:bg-[var(--accent)] hover:border-gray-300"
               >
-                <div className="flex items-center text-red-600">
+                <div className="flex items-center text-red-600 dark:text-red-400">
                   <LogOut className="w-5 h-5" />
                   <span className="ml-2">Logout</span>
                 </div>
               </button>
             </div>
             
-            <div className="pt-4 pb-3 border-t border-gray-200">
+            <div className="pt-4 pb-3 border-t border-[var(--border)]">
               <div className="flex items-center px-4">
                 <div className="flex-shrink-0">
-                  <div className="h-10 w-10 rounded-full bg-blue-900 flex items-center justify-center text-white font-medium">
+                  <div className="h-10 w-10 rounded-full bg-primary-700 flex items-center justify-center text-white font-medium">
                     {user?.name.charAt(0).toUpperCase()}
                   </div>
                 </div>
                 <div className="ml-3">
-                  <div className="text-base font-medium text-gray-800">{user?.name}</div>
-                  <div className="text-sm font-medium text-gray-500">{user?.email}</div>
+                  <div className="text-base font-medium text-[var(--foreground)]">{user?.name}</div>
+                  <div className="text-sm font-medium text-[var(--muted-foreground)]">{user?.email}</div>
                 </div>
               </div>
             </div>
@@ -198,7 +203,7 @@ const TenantLayout: React.FC = () => {
       {/* Main content */}
       <div className="flex">
         {/* Sidebar for tablet and desktop */}
-        <div className="hidden sm:flex sm:flex-col w-64 bg-white shadow-md h-[calc(100vh-4rem)] sticky top-16">
+        <div className="hidden sm:flex sm:flex-col w-64 bg-[var(--card)] shadow-md h-[calc(100vh-4rem)] sticky top-16 border-r border-[var(--border)]">
           <div className="flex-grow flex flex-col pt-5 pb-4 overflow-y-auto">
             <nav className="mt-5 px-2 space-y-1">
               {navItems.map((item) => (
@@ -207,8 +212,8 @@ const TenantLayout: React.FC = () => {
                   to={item.path}
                   className={`${
                     isActive(item.path)
-                      ? 'bg-blue-50 text-blue-900'
-                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                      ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700'
+                      : 'text-[var(--foreground)] hover:bg-[var(--accent)]'
                   } group flex items-center px-2 py-2 text-sm font-medium rounded-md`}
                 >
                   {item.icon}
@@ -217,14 +222,10 @@ const TenantLayout: React.FC = () => {
               ))}
             </nav>
           </div>
-          <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
-            <Link to="/" className="text-sm text-blue-900 hover:text-blue-700">
-              Visit Public Site
-            </Link>
-          </div>
+          
         </div>
 
-        {/* Main content */}
+        {/* Main content area */}
         <div className="flex-1 py-6 px-4 sm:px-6 lg:px-8">
           <Outlet />
         </div>
