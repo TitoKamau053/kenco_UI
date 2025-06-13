@@ -62,11 +62,11 @@ export const authApi = {
     }
   },
   
-  register: async (name: string, email: string, password: string, role?: string) => {
-    const response = await api.post('/api/auth/register', { name, email, password });
+  register: async (name: string, email: string, password: string, role: string = 'landlord') => {
+    const response = await api.post('/api/auth/register', { name, email, password, role });
     return response;
   },
-  
+
   getCurrentUser: async () => {
     const response = await api.get('/api/auth/me');
     return response;
